@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title class="ion-text-center" color="dark">Servicio</ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="dark" routerLink="../listar-servicios">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-avatar >
+      <img src="https://cdn-icons-png.flaticon.com/512/7033/7033070.png"/>
+    </ion-avatar>
+    <ion-card-title class="ion-text-center">Actualizar servicio o producto</ion-card-title>
+    <form [formGroup]="servicioActualizarForm" (ngSubmit)="actualizarServicio()">
+
+      <ion-item lines="full">
+        <ion-label position="floating">Descripción:</ion-label>
+        <ion-input [(ngModel)]="servicio.descripcion" formControlName="descripcion" id="descripcion" type="text"
+          required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Precio Unitario:</ion-label>
+        <ion-input [(ngModel)]="servicio.precioUnitario" formControlName="precioUnitario" id="precioUnitario"
+          type="number" required></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button type="submit" color="dark"><ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp; Actualizar</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-card>
+
+</ion-content>

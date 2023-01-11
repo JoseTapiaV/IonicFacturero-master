@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button class="pagination" color="dark" (click)="cancelar()"> <ion-icon
+          name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button class="pagination" color="dark" (click)="siguiente()"><ion-icon
+          name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Facturar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card id="cotenido">
+    <h1 class="ion-text-center">Seleccionar productos</h1>
+    <form [formGroup]="user">
+      <ion-select #seer placeholder="Seleccione un producto" formControlName="producto" id="producto"
+        (ionChange)="handleChange($event)" required >
+        <ion-select-option *ngFor="let servicio of servicioT"
+          [value]="servicio">{{servicio.descripcion}}</ion-select-option>
+      </ion-select>
+
+      <ion-label aria-expanded="true" position="floating">Precio Unitario</ion-label>
+      <ion-input #precioUnitario formControlName="precioUnitario" id="precioUnitario" type="number" 
+        required value="{{serviciof.precioUnitario}}" placeholder="Costo"></ion-input>
+      <ion-label position="floating">Cantidad</ion-label>
+      <ion-input #cantidad formControlName="cantidad1" id="cantidad1" type="number" 
+        placeholder="Ingrese la cantidad" required></ion-input>
+
+      <ion-button color="dark" expand="block"
+      (click)="agregarDetalles(+precioUnitario.value,serviciof.id, +cantidad.value, serviciof.descripcion)">Agregar</ion-button>
+    </form>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Productos a facturar</ion-card-title>
+      </ion-card-header>
+
+      <ion-card *ngFor="let detalles of det" class="ion-text-center">
+          <ion-list >
+            <div><ion-label color="dark">{{detalles.descripcion}}</ion-label></div>
+            <div><ion-label color="dark">P.Unitario: {{detalles.precioUnitario}} $</ion-label></div>
+            <div><ion-label color="dark">Cantidad: {{detalles.cantidad}}</ion-label></div>
+            <div><ion-label color="dark">Total: {{detalles.total}} $</ion-label></div>
+          </ion-list>
+      </ion-card>
+
+      <ion-item lines="lines" >
+        <ion-title class="ion-text-center">Total</ion-title>
+
+        <ion-list>
+
+          <ion-label color="dark">Subtotal: {{subtotal}} $</ion-label>
+          <ion-label color="dark">Iva: {{impuesto}} $</ion-label>
+          <ion-label color="dark">Total: {{totalF}} $</ion-label>
+
+        </ion-list>
+      </ion-item>
+    </ion-card>
+
+
+  </ion-card>
+</ion-content>

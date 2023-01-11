@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="dark" menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" color="dark">Facturas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="dark" (click)="ir()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card color="dark" class="factura" *ngFor="let facts of factC">
+
+    <ion-avatar style="margin: auto;">
+      <img src="https://cdn-icons-png.flaticon.com/512/2557/2557649.png" />
+    </ion-avatar>
+
+    <ion-card-content color="dark">
+      <ion-item >
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-label style="font-size: 10px;">&nbsp; Fecha Emisión: </ion-label>
+        <ion-label style="font-size: 10px;">{{facts.fechaDeEmision}}</ion-label>
+
+      </ion-item>
+      <ion-item >
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <ion-label style="font-size: 10px;">&nbsp; Cliente: </ion-label>
+        <ion-label style="font-size: 10px;">{{facts.cliente.nombre}} </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="cash-outline"></ion-icon>
+        <ion-label style="font-size: 10px;">&nbsp; Total: </ion-label>
+        <ion-label style="font-size: 10px;"> ${{facts.total}}</ion-label>
+      </ion-item>
+      <ion-buttons>
+        <ion-button id="detalles" color="tertiary"  style="margin: auto;" (click)="setOpen(true,facts.detalles)">
+          <ion-icon name="expand-outline"></ion-icon>
+        </ion-button>
+        <ion-modal [isOpen]="isModalOpen" id="modal1">
+          <ng-template>
+            <ion-header>
+              <ion-toolbar>
+                <ion-title class="ion-text-center">Detalles</ion-title>
+                <ion-buttons slot="start">
+                  <ion-button (click)="setOpen(false,facts.detalles)"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+
+              <ion-card  *ngFor="let detalles1 of factCTo" color="dark">
+                <ion-avatar style="margin: auto;">
+                  <img src="https://cdn-icons-png.flaticon.com/512/2557/2557649.png" />
+                </ion-avatar>
+
+                <ion-card>
+                  <ion-item>
+                    <ion-icon name="bag-outline"></ion-icon>
+                    <ion-label color="dark" style="font-size:  13px;" >&nbsp; Producto:</ion-label>
+                    <ion-label color="dark" style="font-size:  13px;">
+                      {{detalles1.servicio.descripcion}}</ion-label>
+                  </ion-item>
+  
+                  <ion-item>
+                    <ion-icon name="cash-outline"></ion-icon>
+                    <ion-label color="dark" style="font-size:  13px;">&nbsp; P. Unitario:</ion-label>
+                    <ion-label color="dark" style="font-size:  13px;">${{detalles1.precioUnitario}}</ion-label>
+                  </ion-item>
+  
+                  <ion-item>
+                    <ion-icon name="bookmarks-outline"></ion-icon>
+                    <ion-label color="dark" style="font-size: 13px;">&nbsp; Cantidad:</ion-label>
+                    <ion-label color="dark" style="font-size:  13px;">{{detalles1.cantidad}}</ion-label>
+                  </ion-item>
+  
+                  <ion-item>
+                    <ion-icon name="cash-outline"></ion-icon>
+                    <ion-label color="dark" style="font-size:  13px;">&nbsp; Subtotal:</ion-label>
+                    <ion-label color="dark" style="font-size:  13px;">${{detalles1.total}}</ion-label>
+                  </ion-item>
+                </ion-card>
+
+              </ion-card>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+
+        <ion-button id="anular" color="danger" style="margin: auto;"
+          *ngIf="facts.estadoFactura=='EMITIDA'" (click)="deleteFac(facts.id)">
+          <ion-icon name="trash-sharp"></ion-icon>
+        </ion-button>
+
+      </ion-buttons>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

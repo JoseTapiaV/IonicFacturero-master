@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+
+    <div>
+      <img class="avatar"
+        src="../../assets/img/login.png"
+        alt="Imagen inicio de sesion">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+        <ion-item>
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-input type="text" placeholder="Ingrese su Usuario" class="user" formControlName="username" id="username" required=""></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <ion-input type="password" placeholder="Ingrese su Contraseña" class="contra" formControlName="password" id="password" required=""></ion-input>
+        </ion-item>
+
+        <ion-button class="ingresar" type="submit" expand="block" color="dark">Ingresar</ion-button>
+
+      </form>
+      <ion-button class="registrar" type="submit" expand="block" color="dark" routerLink="../register">Registrarse</ion-button>
+    </div>
+  </div>
+</ion-content>

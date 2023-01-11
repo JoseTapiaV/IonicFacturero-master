@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title color="dark"  class="ion-text-center">Facturas Emitidas</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card color="dark" class="factura" *ngFor="let facts of factC">
+
+        <ion-avatar style="margin: auto;">
+            <img src="https://cdn-icons-png.flaticon.com/512/2557/2557649.png" />
+          </ion-avatar>
+
+        <ion-card-content>
+            <ion-item>
+                <ion-icon name="bag-check-outline"></ion-icon>
+                <ion-label style="font-size: 10px;">&nbsp; Fecha Emisión: </ion-label>
+                <ion-label style="font-size: 10px;">{{facts.fechaDeEmision}}</ion-label>
+
+            </ion-item>
+            <ion-item>
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <ion-label style="font-size: 10px;">&nbsp; Cliente: </ion-label>
+                <ion-label style="font-size: 10px;">{{facts.cliente.nombre}} </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="mail-unread-outline"></ion-icon>
+                <ion-label style="font-size: 10px;">&nbsp; Email: </ion-label>
+                <ion-label style="font-size: 10px;">{{facts.cliente.correoElectronico}} </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="cart-outline"></ion-icon>
+                <ion-label style="font-size: 10px;">&nbsp; Subtotal: </ion-label>
+                <ion-label style="font-size: 10px;">${{facts.subtotal}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="information-outline"></ion-icon>
+                <ion-label style="font-size: 10px;">&nbsp; Iva: </ion-label>
+                <ion-label style="font-size: 10px;">${{facts.impuesto}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="cash-outline"></ion-icon>
+                <ion-label style="font-size: 10px;">&nbsp; Total: </ion-label>
+                <ion-label style="font-size: 10px;">${{facts.total}}</ion-label>
+            </ion-item>
+           
+
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>
